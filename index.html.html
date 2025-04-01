@@ -3,44 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>mercadinho puc</title>
-    <h1><strong>Mercadinho 2 Irmãos <br/> <small><em>De um irmão para o outro.</em></small></strong></h1>
-    <p>Um mercado feito por dois irmãos do norte para vender no sul artigos típicos da região Amazônica.</p>
+    <title>Mercadinho 2 Irmãos</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" 
+          integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" 
+          crossorigin="anonymous">
+    
+    <style>
+        body {
+            background-color: greenyellow;
+        }
+        p {
+            color: brown;
+            font-size: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .zoom-effect {
+            transition: transform 0.3s ease-in-out;
+        }
+    </style>
 </head>
-<nav>
-    <p><a href="#produto1">H<sub>2</sub>O</a></p>
-    <p><a href="#produto2">Canoas</a></p>
-    <p><a href="#produto3">Açaí</a></p>
-    <aside>
-        <img src="imagem do amazonas.jpeg" width="200" height="200">
-    </aside>
-</nav>
 <body>
-    <p>PRODUTOS DISPONIVEIS:</p>
-    <div>
-        <h2 id = "produto1"><strong>H<sub>2</sub>O</strong></h2>
-        <img src="https://www.pajeumotogas.com.br/wp-content/uploads/2019/10/agua-mineral.jpg" href="https://www.pajeumotogas.com.br/wp-content/uploads/2019/10/agua-mineral.jpg">
-        <img src="imagem_galão_agua.jpeg" width="400" height="250">
-        <p> Preço do produto: R$7.00 o refil.</p>
-        <p><Small><i>Agua de ótima qualidade coletada na nascente do Rio Amazonas.</i></Small></p>
+    <header class="text-center my-4">
+        <h1><strong>Mercadinho 2 Irmãos</strong></h1>
+        <h5><em>De um irmão para o outro.</em></h5>
+        <p>Um mercado feito por dois irmãos do norte para vender no sul artigos típicos da região Amazônica. Entregamos nossos produtos em seu domicílio!</p>
+        <a href="login.html" class="btn btn-warning" tabindex="1">Login</a>
+        <a href="carrinho.html" class="btn btn-success" tabindex="2">Carrinho</a>
+    </header>
+    
+    <nav class="container text-center mb-4">
+        <a href="#produto1" class="btn btn-primary mx-2" tabindex="3">H<sub>2</sub>O</a>
+        <a href="#produto2" class="btn btn-primary mx-2" tabindex="4">Canoas</a>
+        <a href="#produto3" class="btn btn-primary mx-2" tabindex="5">Açaí</a>
+    </nav>
+    
+    <div class="container mt-5">
+        <div class="row align-items-center mb-4" id="produto1">
+            <div class="col-md-4">
+                <img src="https://www.pajeumotogas.com.br/wp-content/uploads/2019/10/agua-mineral.jpg" class="img-fluid rounded zoom-effect" tabindex="6">
+            </div>
+            <div class="col-md-8">
+                <h2><strong>H<sub>2</sub>O</strong></h2>
+                <p>Preço do produto: R$7.00 o refil.</p>
+                <p><small><i>Água de ótima qualidade coletada na nascente do Rio Amazonas.</i></small></p>
+            </div>
+        </div>
+        
+        <div class="row align-items-center mb-4" id="produto2">
+            <div class="col-md-4">
+                <img src="Canoa_da_região_Amazônica.jpg" width="100%" class="img-fluid rounded zoom-effect" tabindex="7">
+            </div>
+            <div class="col-md-8">
+                <h2><strong>Canoa Amazônica</strong></h2>
+                <p>Preço do produto: R$500.00 a unidade.</p>
+                <p><small><i>Canoa em ótimas condições para explorar as margens do Rio Negro.</i></small></p>
+            </div>
+        </div>
+        
+        <div class="row align-items-center mb-4" id="produto3">
+            <div class="col-md-4">
+                <img src="Açai_anori.jpg" width="100%" class="img-fluid rounded zoom-effect" tabindex="8">
+            </div>
+            <div class="col-md-8">
+                <h2><strong>Açaí de Anori</strong></h2>
+                <p>Preço do produto: R$20.00 o litro.</p>
+                <p><small><i>Açaí natural batido e plantado no município de Anori, no Amazonas.</i></small></p>
+            </div>
+        </div>
     </div>
-    <div>
-        <h2 id = "produto2"><strong> Canoa Amazônica </strong></h2>
-        <img src="Canoa_da_região_Amazônica.jpg" width="400" height="250">
-        <p> Preço do produto: R$500.00 a unidade.</p>
-        <p><Small><i>Canoa em ótimas condições para explorar as margens do rio negro.</i></Small></p>
-    </div>
-    <div>
-        <h2 id = "produto3"><strong> Açaí de Anori</strong></h2>
-        <img src="Açai_anori.jpg" width="400" height="250">
-        <p> Preço do produto: R$20.00 o Litro.</p>
-        <p><Small><i>Açaí natural batido e plantado no município de Anori, no Amazonas.</i></Small></p>
-    </div>
+    
+    <footer class="text-center mt-5 p-4 bg-light">
+        <h3><strong>Informações de contato com o fornecedor:</strong></h3>
+        <a href="mailto:doisirmaos@gmail.com" tabindex="9">Entre em contato por email! doisirmaos@gmail.com</a>
+        <p>Número de telefone: +55 (92) 9123-456</p>
+        <p><small>Alerta: números de contato e email são apenas ilustrativos para fim do projeto.</small></p>
+    </footer>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" 
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4yj7fCwt8+g29Jp6a5t9I" 
+            crossorigin="anonymous"></script>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const images = document.querySelectorAll(".zoom-effect");
+            
+            images.forEach(img => {
+                img.addEventListener("mouseover", function() {
+                    this.style.transform = "scale(1.1)";
+                });
+                
+                img.addEventListener("mouseout", function() {
+                    this.style.transform = "scale(1)";
+                });
+            });
+        });
+    </script>
 </body>
-<footer>
-    <h3><strong>Informações de contato com o fornecedor:</strong></h3>
-    <a href="mailto:doisirmaos@gmail.com">Entre em contato por email!</a>
-    <p>número de telefone: +55(92)9123-456</p>
-    <p><small>Alerta: números de contato e email são apenas ilustrativos para fim do projeto</small></p>
-</footer>
 </html>
