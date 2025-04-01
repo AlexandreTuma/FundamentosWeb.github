@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrinho de Compras</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: lightgreen; /* Alterado para lightgreen */
+    }
+    .container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: white;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .product {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #ddd;
+    }
+    .product input {
+      width: 60px;
+    }
+    .product-name {
+      flex: 2;
+    }
+    .product-price {
+      flex: 1;
+      text-align: center;
+    }
+    .total {
+      text-align: right;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .calendar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .calendar input {
+      width: 200px;
+      padding: 5px;
+    }
+    .confirm-button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
+    .confirm-button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Carrinho de Compras</h1>
+    
+    <!-- Carrinho de Produtos -->
+    <div id="cart">
+      <div class="product">
+        <div class="product-name">H<sub>2</sub>O</div>
+        <div class="product-price">R$ 7,00</div>
+        <input type="number" id="product1" value="0" min="0" onchange="calculateTotal()">
+      </div>
+      <div class="product">
+        <div class="product-name">Canoa AM</div>
+        <div class="product-price">R$ 500,00</div>
+        <input type="number" id="product2" value="0" min="0" onchange="calculateTotal()">
+      </div>
+      <div class="product">
+        <div class="product-name">Açaí de Anori</div>
+        <div class="product-price">R$ 20,00</div>
+        <input type="number" id="product3" value="0" min="0" onchange="calculateTotal()">
+      </div>
+
+      <div class="total">
+        <p>Total: R$ <span id="total">0.00</span></p>
+      </div>
+    </div>
+    
+    <!-- Opções de Entrega ou Retirada -->
+    <div class="form-group">
+      <label for="delivery-method">Escolha a forma de entrega:</label>
+      <select id="delivery-method" onchange="toggleDeliveryOption()">
+        <option value="pickup">Retirada no local</option>
+        <option value="delivery">Tele-entrega</option>
+      </select>
+    </div>
+
+    <div id="delivery-options" style="display:none;">
+      <div class="calendar">
+        <label for="delivery-date">Escolha a data:</label>
+        <input type="date" id="delivery-date">
+      </div>
+      <div class="calendar">
+        <label for="delivery-time">Escolha o horário:</label>
+        <input type="time" id="delivery-time">
+      </div>
+      <button onclick="calculateDelivery()">Prever entrega</button>
+      <p id="delivery-result"></p>
+    </div>
+
+    <div id="pickup-options" style="display:none;">
+      <div class="calendar">
+        <label for="pickup-date">Escolha a data de retirada:</label>
+        <input type="date" id="pickup-date">
+      </div>
+      <div class="calendar">
+        <label for="pickup-time">Escolha o horário de retirada:</label>
+        <input type="time" id="pickup-time">
+      </div>
+      <button onclick="calculatePickup()">Prever retirada</button>
+      <p id="pickup-result"></p>
+    </div>
+
+    <!-- Botão de Confirmar Compra -->
+    <button class="confirm-button" onclick="confirmPurchase()">Confirmar Compra</button>
+  </div>
+
+  <script>
+    function calculateTotal() {
+      const product1 = document.getElementById("product1").value || 0;
+      const product2 = document.getElementById("product2").value || 0;
+      const product3 = document.getElementById("product3").value || 0;
+      
+      const price1 = 7.00;
+      const price2 = 500.00;
+      const price3 = 20.00;
+      
+      const total = (product1 * price1) + (product2 * price2) + (product3 * price3);
+      
+      document.getElementById("total").innerText = total.toFixed(2);
+    }
+
+    function toggleDeliveryOption() {
+      const deliveryMethod = document.getElementById("delivery-method").value;
+      
+      if (deliveryMethod === "pickup") {
+        document.getElementById("pickup-options").style.display = "block";
+        document.getElementById("delivery-options").style.display = "none";
+      } else {
+        document.getElementById("pickup-options").style.display = "none";
+        document.getElementById("delivery-options").style.display = "block";
+      }
+    }
+
+    function calculateDelivery() {
+      const deliveryDate = document.getElementById("delivery-date").value;
+      const deliveryTime = document.getElementById("delivery-time").value;
+
+      if (deliveryDate && deliveryTime) {
+        document.getElementById("delivery-result").innerText = `Sua entrega será realizada no dia ${deliveryDate} às ${deliveryTime}.`;
+      } else {
+        document.getElementById("delivery-result").innerText = "Por favor, selecione uma data e horário para a entrega.";
+      }
+    }
+
+    function calculatePickup() {
+      const pickupDate = document.getElementById("pickup-date").value;
+      const pickupTime = document.getElementById("pickup-time").value;
+
+      if (pickupDate && pickupTime) {
+        document.getElementById("pickup-result").innerText = `Sua retirada será realizada no dia ${pickupDate} às ${pickupTime}.`;
+      } else {
+        document.getElementById("pickup-result").innerText = "Por favor, selecione uma data e horário para a retirada.";
+      }
+    }
+
+    function confirmPurchase() {
+      const totalAmount = document.getElementById("total").innerText;
+      const deliveryMethod = document.getElementById("delivery-method").value;
+
+      let confirmationMessage = `Compra confirmada! Total: R$ ${totalAmount}\nMétodo de entrega: ${deliveryMethod === "pickup" ? "Retirada no local" : "Tele-entrega"}.`;
+
+      if (deliveryMethod === "delivery") {
+        const deliveryDate = document.getElementById("delivery-date").value;
+        const deliveryTime = document.getElementById("delivery-time").value;
+        if (deliveryDate && deliveryTime) {
+          confirmationMessage += `\nEntrega prevista para o dia ${deliveryDate} às ${deliveryTime}.`;
+        } else {
+          confirmationMessage += "\nDetalhes de entrega não completos.";
+        }
+      } else {
+        const pickupDate = document.getElementById("pickup-date").value;
+        const pickupTime = document.getElementById("pickup-time").value;
+        if (pickupDate && pickupTime) {
+          confirmationMessage += `\nRetirada prevista para o dia ${pickupDate} às ${pickupTime}.`;
+        } else {
+          confirmationMessage += "\nDetalhes de retirada não completos.";
+        }
+      }
+
+      alert(confirmationMessage);
+    }
+  </script>
+</body>
+</html>
